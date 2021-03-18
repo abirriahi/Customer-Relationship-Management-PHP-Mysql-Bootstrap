@@ -1,0 +1,114 @@
+<html>
+<head>
+  <script type='text/javascript' src='http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.9.1.min.js'></script>
+  <script type='text/javascript' src='../../scripts/jquery.msgBox.js'></script>
+  <link rel="stylesheet" href="../../styles/msgBoxLight.css" />
+</head>
+<body>
+	<button onClick="a();" id="showBtn">a</button>
+    <button onClick="b();" id="showBtn">b</button>
+    <button onClick="c();" id="showBtn">c</button>
+    <button onClick="d();" id="showBtn">d</button>
+    <button onClick="e();" id="showBtn">e</button>
+    <button onClick="f();" id="showBtn">f</button>
+    <button onClick="g();" id="showBtn">g</button>
+     <button onClick="h();" id="showBtn">h</button>
+	
+	<script>
+		$("#showBtn").focus();
+		msgBoxImagePath = "../../images/";
+		function a() {
+			$.msgBox({
+				title: "Alert box",
+				content: "message",
+				type: "alert"
+			});
+		}
+		
+		function b() {
+			$.msgBox({
+				  title:"Selam / Hello",
+   				 content:"Merhaba Dünya! / Hello World!"
+			});
+		}
+		
+		
+		function c() {
+			$.msgBox({
+    title:"Selam / Hello",
+    content:"Merhaba Dünya! / Hello World!",
+    type:"info"
+});
+		}
+		
+		
+		function d() {
+			$.msgBox({
+    title: "Are You Sure",
+    content: "Would you like a cup of coffee?",
+    type: "confirm",
+    buttons: [{ value: "Yes" }, { value: "No" }, { value: "Cancel"}],
+    success: function (result) {
+        if (result == "Yes") {
+            alert("One cup of coffee coming right up!");
+        }
+    }
+});
+		}
+		
+		
+		function e() {
+		$.msgBox({
+    title: "Ooops",
+    content: "Ohh dear! You broke it!!!",
+    type: "error",
+    buttons: [{ value: "Ok" }],
+    afterShow: function (result) { alert("Message has been shown!"); }
+});	
+		}
+		
+		function f() {
+			$.msgBox({
+    title: "Ooops",
+    content: "Ohh dear! You broke it!!!",
+    type: "error",
+    beforeClose: function () { alert("Message will be closed!"); },
+    showButtons:false,
+    opacity:0.9
+});
+		}
+		
+		
+		function g() {
+		$.msgBox({
+    title: "Ooops",
+    content: "Ohh dear! You broke it!!!",
+    type: "error",
+    showButtons: false,
+    opacity: 0.9,
+    autoClose:true
+});
+		}
+		
+		function h() {
+		$.msgBox({ type: "prompt",
+    title: "Log In",
+    inputs: [
+    { header: "User Name", type: "text", name: "userName" },
+    { header: "Password", type: "password", name: "password" },
+    { header: "Remember me", type: "checkbox", name: "rememberMe", value: "theValue" }],
+    buttons: [
+    { value: "Login" }, {value:"Cancel"}],
+    success: function (result, values) {
+        var v = result + " has been clicked\n";
+        $(values).each(function (index, input) {
+            v += input.name + " : " + input.value + 
+            (input.checked != null ? (" - checked: " + input.checked) : "") + "\n";
+        });
+        alert(v);
+    }
+});
+    
+		}
+	</script>
+</body>
